@@ -295,7 +295,7 @@ class FocusPointImage extends DataExtension
         //Only resize if necessary
         if ($this->owner->isSize($width, $height) && !Config::inst()->get('Image', 'force_resample')) {
             return $this->owner;
-        } elseif ($cropData = $this->calculateCrop($width, $height)) {
+        } elseif (($cropData = $this->calculateCrop($width, $height)) && $cropData !== false) {
             $img = $this->owner->getFormattedImage('CroppedFocusedImage', $width, $height, $cropData['CropAxis'], $cropData['CropOffset']);
             if (!$img) {
                 return null;
